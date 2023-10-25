@@ -11,13 +11,13 @@ async function Page() {
   const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect("/");
 
-  const userData = {
-    id: user.id,
+   const userData = {
+    id: user?.id,
     objectId: userInfo?._id,
-    username: userInfo ? userInfo?.username : user.username,
-    name: userInfo ? userInfo?.name : user.firstName ?? "",
-    bio: userInfo ? userInfo?.bio : "",
-    image: userInfo ? userInfo?.image : user.imageUrl,
+    username: userInfo?.username || user?.username,
+    name: userInfo?.name || user?.firstName || "",
+    bio: userInfo?.bio || "",
+    image: userInfo?.image || user?.imageUrl
   };
 
   return (
